@@ -3,7 +3,7 @@ package beantest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import test.TestBean;
+import knight.z9_test.TestBean;
 
 public class BeanTest {
 	public static void main(String args[]) {

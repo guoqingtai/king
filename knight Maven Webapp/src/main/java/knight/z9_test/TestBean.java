@@ -1,4 +1,4 @@
-package test;
+package knight.z9_test;
 
 public class TestBean {
 	private String test ="123";
