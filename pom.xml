@@ -8,5 +8,6 @@
   <build/>
   <modules>
     <module>knight</module>
+    <module>herald</module>
   </modules>
 </project>
