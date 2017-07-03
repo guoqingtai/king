@@ -5,6 +5,24 @@
 	version="3.0" id="WebApp_1498992648856">
 	
   <display-name>Archetype Created Web Application</display-name>
+   
+   <!-- DWR CFG START -->
+   <servlet>
+  <servlet-name>dwr-invoker</servlet-name>
+  <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+  	  <init-param>  
+      <param-name>debug</param-name>  
+      <param-value>true</param-value>  
+  </init-param> 
+  <!-- 声明该servlet类加载的顺序 --> 
+  <load-on-startup>1</load-on-startup> 
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>dwr-invoker</servlet-name>
+  <url-pattern>/dwr/*</url-pattern>
+  </servlet-mapping>
+  <!-- DWR END -->
+  
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:applicationContext.xml</param-value>

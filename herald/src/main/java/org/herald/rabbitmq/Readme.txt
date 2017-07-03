@@ -14,3 +14,6 @@ rabbitmqctl set_user_tags admin administrator
 ./rabbitmq-plugins enable rabbitmq_management
 
 rabbitmqctl set_permissions -p "/" fanfou ".*" ".*" ".*"
+
+参考资料
+http://blog.csdn.net/sharetop/article/details/49716897
