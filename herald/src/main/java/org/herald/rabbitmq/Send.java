@@ -31,7 +31,7 @@ public class Send {
 		// 共发送10万条数据，每隔1S发送1次
 		int index = 0;
 		while (index < 100000) {
-			Thread.sleep(1 * 1000);
+			Thread.sleep((int)(1000.0*Math.random()));
 			channel.basicPublish("", TASK_QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
 			System.out.println(" [x] Sent '" + message + "'");
 			index++;
@@ -41,8 +41,9 @@ public class Send {
 	}
 
 	private static String getMessage(String[] strings) {
-		if (strings.length < 1)
-			return "Hello World!";
+		if (strings.length < 1){
+			return "[ERROR]Hello World!";
+		}
 		return joinStrings(strings, " ");
 	}
 

@@ -3,48 +3,51 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0" id="WebApp_1498992648856">
-	
-  <display-name>Archetype Created Web Application</display-name>
-   
-   <!-- DWR CFG START -->
-   <servlet>
-  <servlet-name>dwr-invoker</servlet-name>
-  <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
-  	  <init-param>  
-      <param-name>debug</param-name>  
-      <param-value>true</param-value>  
-  </init-param> 
-  <!-- 声明该servlet类加载的顺序 --> 
-  <load-on-startup>1</load-on-startup> 
-  </servlet>
-  <servlet-mapping>
-  <servlet-name>dwr-invoker</servlet-name>
-  <url-pattern>/dwr/*</url-pattern>
-  </servlet-mapping>
-  <!-- DWR END -->
-  
-  <context-param>
-  	<param-name>contextConfigLocation</param-name>
-  	<param-value>classpath:applicationContext.xml</param-value>
-  </context-param>
-  <listener>
-  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  
-  <!--配置Spring servelet -->
+
+	<display-name>Archetype Created Web Application</display-name>
+
+	<!-- DWR CFG START -->
+	<!-- DWR主要用于服务器推送 -->
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!-- 声明该servlet类加载的顺序 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	<!-- DWR END -->
+
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:applicationContext*.xml</param-value>
+	</context-param>
+
+	<!--配置Spring servelet -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath*:spring/applicationContext*.xml</param-value>
+			<param-value>classpath*:applicationContext*.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
+
 	<!-- 配置utf8 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -54,4 +57,24 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
+
+
+	<!-- Loads Spring Security config file -->
+	<!--  
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:spring-security.xml
+		</param-value>
+	</context-param>
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
 </web-app>
