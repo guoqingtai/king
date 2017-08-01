@@ -5,49 +5,50 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security.xsd">
+	 <http pattern="/security_test.jsp" security="none"/>
+	<http use-expressions="true" auto-config="false">
+        <intercept-url pattern="/**" access="authenticated"/>
+        <csrf disabled="true"/>
+        <form-login login-page="/security_test.jsp"
+            authentication-failure-url="/security_test.jsp?error=true"
+            default-target-url="/index.jsp" />
+        <logout logout-success-url="/security_test.jsp" />
+        <http-basic />
+        <!-- 增加一个filter，这点与Acegi是不一样的，不能修改默认的filter了，这个filter位于FILTER_SECURITY_INTERCEPTOR之前 -->
+        <custom-filter before="FILTER_SECURITY_INTERCEPTOR"
+            ref="myFilter" />
+    </http>
 
-	<debug />
-	<http security="none" pattern="/login.jsp" />
-	<http security="none" pattern="/static/**" />
-	<http use-expressions="true" auto-config="true">
-		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+    <!-- 一个自定义的filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性，
+    我们的所有控制将在这三个类中实现，解释详见具体配置 -->
+    <beans:bean id="myFilter" class="knight.a2_security.MyFilterSecurityInterceptor">
+        <beans:property name="authenticationManager"
+            ref="authenticationManager" />
+        <beans:property name="accessDecisionManager"
+            ref="myAccessDecisionManagerBean" />
+        <beans:property name="securityMetadataSource"
+            ref="securityMetadataSource" />
+    </beans:bean>
+    
+    <!-- 认证管理器，实现用户认证的入口，主要实现UserDetailsService接口即可 -->
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider
+            user-service-ref="myUserDetailService">
+            <!--   如果用户的密码采用加密的话，可以加点“盐”
+                <password-encoder hash="md5" />
+            -->
+        </authentication-provider>
+    </authentication-manager>
+    <beans:bean id="myUserDetailService"
+        class="knight.a2_security.MyUserDetailService" />
 
-		<!-- 同一时间内允许同一账号保持4个在线,error-if-maximum-exceeded="true"表示第第四个以后的登不进去 -->
-		<session-management>
-			<concurrency-control max-sessions="4"
-				error-if-maximum-exceeded="true" />
-		</session-management>
-		<csrf disabled="true" />
-		<!-- 
-		<form-login login-page="/login.jsp"
-			authentication-failure-handler-ref="authenticationFailureHandlerImpl"
-			authentication-success-handler-ref="authenticationSuccessHandlerImpl" />
-			 -->
-		<logout logout-success-url="/logout.jsp" logout-url="logout"
-			invalidate-session="true" delete-cookies="JSESSIONID" />
-	</http>
+    <!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
+    <beans:bean id="myAccessDecisionManagerBean"
+        class="knight.a2_security.MyAccessDecisionManager">
+    </beans:bean>
+    
+    <!-- 资源源数据定义，即定义某一资源可以被哪些角色访问 -->
+    <beans:bean id="securityMetadataSource"
+        class="knight.a2_security.MyInvocationSecurityMetadataSource" />
 
-	<authentication-manager>
-		<!-- <authentication-provider> -->
-		<!-- <user-service> -->
-		<!-- <user name="admin" password="123" authorities="ROLE_USER"/> -->
-		<!-- </user-service> -->
-		<!-- </authentication-provider> -->
-		<authentication-provider user-service-ref="userService">
-			<password-encoder hash="bcrypt" />
-		</authentication-provider>
-	</authentication-manager>
-
-	<beans:bean id="userService" class="com.**.user.service.impl.UserServiceImpl" />
-<!-- 
-	<beans:bean id="authenticationSuccessHandlerImpl"
-		class="knight.a2_security.AuthenticationSuccessHandlerImpl">
-		<beans:property name="url" value="/welcome.jsp" />
-	</beans:bean>
-
-	<beans:bean id="authenticationFailureHandlerImpl"
-		class="knight.a2_security.AuthenticationFailureHandlerImpl">
-		<beans:property name="errorUrl" value="/error.jsp" />
-	</beans:bean>
--->
 </beans:beans>
