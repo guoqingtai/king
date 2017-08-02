@@ -30,7 +30,7 @@
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:applicationContext*.xml</param-value>
+		<param-value>classpath*:spring-*.xml</param-value>
 	</context-param>
 
 	<!--配置Spring servelet -->
@@ -39,7 +39,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath*:applicationContext*.xml</param-value>
+			<param-value>classpath*:spring-*.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -70,7 +70,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:spring-security.xml
+			classpath*:springSecurity.xml
 		</param-value>
 	</context-param>
 	<filter>

@@ -82,12 +82,6 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis.spring.version}</version>
 		</dependency>
-		<!-- 导入Mysql数据库链接jar包 -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.30</version>
-		</dependency>
 		<!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -207,6 +201,18 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.1.2.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<finalName>knight</finalName>
