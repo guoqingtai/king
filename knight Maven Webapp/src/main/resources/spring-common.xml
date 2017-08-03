@@ -16,6 +16,7 @@
 	
 	<mvc:annotation-driven />
 	<context:component-scan base-package="knight.a0_controllers" />
+	<context:component-scan base-package="knight" />
 	<!-- 视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -55,6 +56,8 @@
         <property name="dataSource" ref="dataSource" />
         <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
         <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <!-- 扫描entity包 使用别名 -->
+        <property name="typeAliasesPackage" value="knight.z9_test.mybatis.entity" />
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath*:mapper/*.xml" />
     </bean>
@@ -64,7 +67,7 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="com.soecode.lyf.dao" />
+        <property name="basePackage" value="knight.z9_test.mybatis.dao" />
     </bean>
 
 </beans>
