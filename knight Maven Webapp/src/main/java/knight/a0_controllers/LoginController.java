@@ -2,22 +2,23 @@ package knight.a0_controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import knight.z9_test.mybatis.dao.BookDao;
 
 @Controller()
 @RequestMapping("/")
 public class LoginController {
 
+	@Autowired BookDaoTest tst;
+	
 	@RequestMapping("/login.htm")
 	public String login(HttpServletRequest request) {
 		String userName = request.getParameter("userName");
 		System.out.println(userName);
-		BookDaoTest bkd = new BookDaoTest();
+		//BookDaoTest bkd = new BookDaoTest();
 		try {
-			bkd.testQueryById() ;
+			tst.testQueryById() ;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

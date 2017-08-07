@@ -1,4 +1,5 @@
 package knight.z9_test.mybatis.entity;
+
 public class Book {
 
     private long bookId;// 图书ID

@@ -3,11 +3,12 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import knight.z9_test.mybatis.dao.BookDao;
 import knight.z9_test.mybatis.entity.Book;
 
-
+@Service
 public class BookDaoTest  {
 
     @Autowired
