@@ -35,7 +35,7 @@ public class MyInvocationSecurityMetadataSource
         Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
         ConfigAttribute ca = new SecurityConfig("ROLE_ADMIN");
         atts.add(ca);
-        resourceMap.put("/index.jsp", atts);
+        resourceMap.put("/index.htm", atts);
         resourceMap.put("/i.jsp", atts);
     }
 

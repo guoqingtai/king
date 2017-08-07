@@ -14,6 +14,18 @@ public class LoginController {
 	
 	@RequestMapping("/login.htm")
 	public String login(HttpServletRequest request) {
+		return "login";
+		
+	}
+	
+	@RequestMapping("/index.htm")
+	public String index(HttpServletRequest request) {
+		return "index";
+	}
+	
+	
+	@RequestMapping("/test.htm")
+	public String test(HttpServletRequest request) {
 		String userName = request.getParameter("userName");
 		System.out.println(userName);
 		//BookDaoTest bkd = new BookDaoTest();
