@@ -6,16 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import knight.b0_mnt.service.LoginService;
+
 @Controller()
 @RequestMapping("/")
 public class LoginController {
 
 	@Autowired BookDaoTest tst;
+	@Autowired LoginService svs;
 	
 	@RequestMapping("/login.htm")
 	public String login(HttpServletRequest request) {
 		try {
 			tst.testQueryById() ;
+			svs.getUser("admin");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
