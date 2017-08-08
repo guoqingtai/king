@@ -2,6 +2,7 @@ package knight.a2_security;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,11 +11,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import knight.b0_mnt.service.LoginService;
+
 public class MyUserDetailService implements UserDetailsService {
 
+	@Autowired
+	LoginService login;
+	
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException, DataAccessException {
+    	
+    	System.out.println("LOGIN:" + login);
         Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
         SimpleGrantedAuthority auth2=new SimpleGrantedAuthority("ROLE_ADMIN");
         auths.add(auth2);
