@@ -18,14 +18,14 @@ public class BookDaoTest  {
     public void testQueryById() throws Exception {
         long bookId = 1000;
         Book book = bookDao.queryById(bookId);
-        System.out.println(book);
+        System.out.println(book.getName());
     }
 
     @Test
     public void testQueryAll() throws Exception {
         List<Book> books = bookDao.queryAll(0, 4);
         for (Book book : books) {
-            System.out.println(book);
+            System.out.println(book.getName());
         }
     }
 

@@ -14,6 +14,12 @@ public class LoginController {
 	
 	@RequestMapping("/login.htm")
 	public String login(HttpServletRequest request) {
+		try {
+			tst.testQueryById() ;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "login";
 		
 	}
