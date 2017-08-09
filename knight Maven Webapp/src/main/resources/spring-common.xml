@@ -24,4 +24,5 @@
 	</bean>
 
 	<bean id="knight.z9_test" class="knight.z9_test.TestBean"></bean>
+	<import resource="classpath*:springSecurity.xml"/>
 </beans>

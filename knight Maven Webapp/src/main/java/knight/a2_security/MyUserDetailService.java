@@ -23,6 +23,7 @@ public class MyUserDetailService implements UserDetailsService {
             throws UsernameNotFoundException, DataAccessException {
     	
     	System.out.println("LOGIN:" + login);
+    	
         Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
         SimpleGrantedAuthority auth2=new SimpleGrantedAuthority("ROLE_ADMIN");
         auths.add(auth2);
