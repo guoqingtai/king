@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="knight.b0_mnt.dao.TMntDao">
+
+	<select id="queryByName" resultType="knight.b0_mnt.entity.TUser"
+		parameterType="java.lang.String">
+		select * from T_User 
+		where user_name = #{userName}
+	</select>
+	
+	<select id="queryRoleById" resultType="knight.b0_mnt.entity.TRole"
+		parameterType="int">
+		select * from t_role 
+		where role_id in (select role_id from r_user_role where user_id = #{userId})
+	</select>
+	
+	<select id="queryRole" resultType="knight.b0_mnt.entity.TRole">
+		select * from t_role
+	</select>
+	
+	<select id="queryResourceByRoleId" resultType="knight.b0_mnt.entity.TResource" 
+		parameterType="int">
+		select * from t_resource
+		where res_id in (select res_id from r_role_resource where role_id = #{roleId})
+	</select>
+	
+	
+</mapper>

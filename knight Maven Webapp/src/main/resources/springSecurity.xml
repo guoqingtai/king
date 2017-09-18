@@ -52,8 +52,11 @@ http://www.springframework.org/schema/security/spring-security.xsd">
         class="knight.a2_security.MyAccessDecisionManager">
     </beans:bean>
     
+    <beans:bean id="loginService" class="knight.b0_mnt.service.LoginService"></beans:bean>
     <!-- 资源源数据定义，即定义某一资源可以被哪些角色访问 -->
     <beans:bean id="securityMetadataSource"
-        class="knight.a2_security.MyInvocationSecurityMetadataSource" />
+        class="knight.a2_security.MyInvocationSecurityMetadataSource" >
+        <beans:constructor-arg><beans:ref bean="loginService"/></beans:constructor-arg>  
+     </beans:bean>
 
 </beans:beans>

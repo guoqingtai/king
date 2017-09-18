@@ -11,6 +11,14 @@
 <script type="text/javascript" src="js/plugins/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="js/custom/general.js"></script>
 <script type="text/javascript" src="js/custom/index.js"></script>
+<script type="text/javascript" src="js/common/md5.js"></script>
+<script type="text/javascript">
+	function encryptPasswd() {
+		alert("123456");
+		document.getElementById("password").value=hex_md5(document.getElementById("password").value);
+		alert(document.getElementById("password").value);
+	}
+</script>
 <!--[if IE 9]>
     <link rel="stylesheet" media="screen" href="css/style.ie9.css"/>
 <![endif]-->
@@ -27,7 +35,7 @@
     	<div class="loginboxinner">
         	
             <div class="logo">
-            	<h1 class="logo">Ama.<span>Admin</span></h1>
+            	<h1 class="logo">Ama1.<span>Admin</span></h1>
 				<span class="slogan">后台管理系统</span>
             </div><!--logo-->
             
@@ -48,7 +56,7 @@
                 </div><!--loginf-->
             </div><!--nopassword-->
             <!--<%--"<%=request.getContextPath()%>/login" --%>-->
-            <form id="login" action="/knight/login" method="post">
+            <form id="login" action="/knight/login" method="post" onsubmit="encryptPasswd();">
                 <div class="username">
                 	<div class="usernameinner">
                     	<input type="text" name="username" id="username" />

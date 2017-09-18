@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import knight.a1_common_utils.Md5Util;
+import knight.b0_mnt.entity.TRole;
+import knight.b0_mnt.entity.TUser;
 import knight.b0_mnt.service.LoginService;
 
 public class MyUserDetailService implements UserDetailsService {
@@ -24,20 +27,27 @@ public class MyUserDetailService implements UserDetailsService {
     	
     	System.out.println("LOGIN:" + login);
     	
-        Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
-        SimpleGrantedAuthority auth2=new SimpleGrantedAuthority("ROLE_ADMIN");
-        auths.add(auth2);
-        if(username.equals("robin1")){
-            //auths=new ArrayList<GrantedAuthority>();
-            SimpleGrantedAuthority auth1=new SimpleGrantedAuthority("ROLE_ROBIN");
-            auths.add(auth1);
-        }
-        
-//        User(String username, String password, boolean enabled, boolean accountNonExpired,
-//                    boolean credentialsNonExpired, boolean accountNonLocked, Collection<GrantedAuthority> authorities) {
-        User user = new User(username,
-                "robin", true, true, true, true, auths);
-        return user;
+    	TUser user = login.getUser(username);
+    	//用户不存在
+    	if (user == null || user.getRoles() == null || user.getRoles().size() == 0) {
+    		return null;
+    	}
+    	else {
+    		Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
+    		for (TRole role : user.getRoles()) {
+    			SimpleGrantedAuthority auth=new SimpleGrantedAuthority(role.getRoleName());
+    			auths.add(auth);
+    		}
+    		User res = new User(username,
+                    user.getPassword(), true, true, true, true, auths);
+    		return res;
+    	}
+       // Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
+       // SimpleGrantedAuthority auth2=new SimpleGrantedAuthority("admin");
+       // auths.add(auth2);
+       // System.out.println(Md5Util.GetMD5Code("robin"));
+       // User user = new User(username,
+       //         Md5Util.GetMD5Code("robin"), true, true, true, true, auths);
     }
     
 }

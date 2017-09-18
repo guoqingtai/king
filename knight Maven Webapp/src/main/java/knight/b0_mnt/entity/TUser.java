@@ -2,6 +2,7 @@ package knight.b0_mnt.entity;
 
 
 import java.util.Date;
+import java.util.List;
 
 public class TUser {
 	/**
@@ -11,6 +12,9 @@ public class TUser {
 	private String userName;
 	private String password;
 	private Date createTime;
+	private List<TRole> roles; 
+
+
 
 	public int getUserId() {
 		return userId;
@@ -75,6 +79,14 @@ public class TUser {
 	@Override 
 	public String toString() {
 		return "[TUser]" + userName;
+	}
+
+	public List<TRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<TRole> roles) {
+		this.roles = roles;
 	}
 
 }
