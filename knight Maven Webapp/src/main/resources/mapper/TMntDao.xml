@@ -25,6 +25,4 @@
 		select * from t_resource
 		where res_id in (select res_id from r_role_resource where role_id = #{roleId})
 	</select>
-	
-	
 </mapper>
