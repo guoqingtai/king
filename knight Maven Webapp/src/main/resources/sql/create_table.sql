@@ -22,6 +22,7 @@ VALUES
     (1002, '设计模式', 10),
     (1003, '编译原理', 10);
     
+select * from book;
 create table t_user
 (
 user_id int not null primary key auto_increment, 
@@ -30,7 +31,7 @@ password varchar(128),
 create_time timestamp
 );
 
-insert into t_user (user_name,password) values ('admin','123');
+
 
 create table t_role
 (
@@ -39,10 +40,15 @@ role_name varchar(128) unique not null,
 primary key(role_id)
 );
 
+drop table t_resource;
 create table t_resource
 (
 res_id int not null auto_increment,
 uri varchar(128) unique not null,
+num int,
+parent int,
+zh varchar(256),
+en varchar(256),
 primary key (res_id)
 );
 
@@ -55,3 +61,24 @@ create table r_role_resource (
 role_id int references t_role(role_id),
 res_id int references t_resource(res_id)
 );
+
+
+insert into t_user (user_name,password) values ('admin','8ee60a2e00c90d7e00d5069188dc115b');
+select * from t_user;
+select * from t_resource;
+select * from r_role_resource;
+
+insert into t_role (role_name) values('admin');
+insert into r_user_role values (1,1);
+insert into t_resource (uri,num,parent,zh,en) values ('index.htm',0,0,'AA','aa');
+insert into t_resource (uri,num,parent,zh,en) values ('menu.htm',1,0,'BB','bb');
+insert into r_role_resource (role_id,res_id) values (1,1);
+insert into r_role_resource (role_id,res_id) values (1,2);
+# TEST
+select * from t_role where role_id in (select role_id from r_user_role where user_id = 1);
+select * from t_resource where res_id in (select res_id from r_role_resource where role_id = 1);
+
+
+
+
+
