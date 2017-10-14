@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="knight.c0_survey.dao.BSurveyDao">
+
+	<select id="getAllSurvey" resultType="knight.c0_survey.entity.BSurvey">
+		select * from b_survey
+	</select>
+</mapper>
