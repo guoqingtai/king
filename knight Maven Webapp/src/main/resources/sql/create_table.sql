@@ -72,13 +72,63 @@ insert into t_role (role_name) values('admin');
 insert into r_user_role values (1,1);
 insert into t_resource (uri,num,parent,zh,en) values ('index.htm',0,0,'AA','aa');
 insert into t_resource (uri,num,parent,zh,en) values ('menu.htm',1,0,'BB','bb');
+insert into t_resource (uri,num,parent,zh,en) values ('ajaxtest.htm',3,0,'CC','cc');
 insert into r_role_resource (role_id,res_id) values (1,1);
 insert into r_role_resource (role_id,res_id) values (1,2);
+insert into r_role_resource (role_id,res_id) values (1,3);
 # TEST
 select * from t_role where role_id in (select role_id from r_user_role where user_id = 1);
 select * from t_resource where res_id in (select res_id from r_role_resource where role_id = 1);
 
+drop table b_survey;
+create table b_survey
+(
+sv_id int not null auto_increment,
+sv_class varchar(128) unique not null,
+ques_num int not null,
+ord int,
+text varchar(512),
+primary key (sv_id)
+);
 
+drop table b_question;
+create table b_question
+(
+qs_id int not null auto_increment,
+ord int,
+text varchar(512),
+primary key (qs_id)
+);
+drop table b_option;
+create table b_option
+(
+op_id int not null auto_increment,
+ord int,
+text varchar(256),
+val decimal(12,2),
+primary key(op_id)
+);
+
+drop table b_ans;
+create table b_ans
+(
+ans_id int not null auto_increment,
+ans_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+user_id int not null,
+sv_id int not null,
+is_complete boolean default false,
+ans_val decimal(12,2) not null,
+primary key(ans_id)
+);
+
+drop table b_ans_detail;
+create table b_ans_detail
+(
+dt_id int not null auto_increment,
+ans_id int not null,
+dt_val decimal(12,2),
+primary key(dt_id)
+);
 
 
 

@@ -6,6 +6,8 @@ http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security.xsd">
 	 <http pattern="/login.htm" security="none"/>
+	 <http pattern="/test/test.htm" security="none"/>
+	 <http pattern="/test/ajaxtest.htm" security="none"/>
 	 <http pattern="/ajax/**" security="none"/>
 	 <http pattern="/css/**" security="none"/>
 	 <http pattern="/fonts/**" security="none"/>

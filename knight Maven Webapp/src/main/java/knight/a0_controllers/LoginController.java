@@ -25,7 +25,7 @@ public class LoginController {
 	@RequestMapping("/login.htm")
 	public String login(HttpServletRequest request) {
 		try {
-			tst.testQueryById();
+			//tst.testQueryById();
 			svs.getUser("admin");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,20 +52,6 @@ public class LoginController {
 	//	List<User> list = svs.getResourceByRoleId(roleId);
 	//	return list;
 	//}
-
-	@RequestMapping("/test.htm")
-	public String test(HttpServletRequest request) {
-		String userName = request.getParameter("userName");
-		System.out.println(userName);
-		// BookDaoTest bkd = new BookDaoTest();
-		try {
-			tst.testQueryById();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "index";
-
-	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
