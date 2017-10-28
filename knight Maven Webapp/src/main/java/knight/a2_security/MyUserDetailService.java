@@ -35,12 +35,14 @@ public class MyUserDetailService implements UserDetailsService {
     	else {
     		Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
     		for (TRole role : user.getRoles()) {
-    			SimpleGrantedAuthority auth=new SimpleGrantedAuthority(role.getRoleName());
+    			SimpleGrantedAuthority auth=new SimpleGrantedAuthority(String.valueOf(role.getRoleId()));
     			auths.add(auth);
     		}
     		User res = new User(username,
                     user.getPassword(), true, true, true, true, auths);
+    		
     		return res;
+    		
     	}
        // Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
        // SimpleGrantedAuthority auth2=new SimpleGrantedAuthority("admin");

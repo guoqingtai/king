@@ -1,0 +1,8 @@
+1、怎样添加权限
+insert into t_resource (uri,num,parent,zh,en) values ('index.htm',0,0,'AA','aa');
+select res_id from t_resource where uri='index.htm';
+insert into r_role_resource (role_id,res_id) values (1,N);
+
+insert into t_resource (uri,num,parent,zh,en) values ('sidemenu.htm',0,0,'侧边栏','aa');
+
+2 怎样添加默认权限

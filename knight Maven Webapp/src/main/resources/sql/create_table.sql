@@ -31,7 +31,14 @@ password varchar(128),
 create_time timestamp
 );
 
-
+create table t_department
+(
+depart_id int not null primary key auto_increment,
+depart_name varchar(256) unique not null,
+is_leaf boolean unique default false,
+parent_id int,
+create_time timestamp
+)
 
 create table t_role
 (
@@ -49,6 +56,8 @@ num int,
 parent int,
 zh varchar(256),
 en varchar(256),
+img varchar(64),
+show boolean default true, 
 primary key (res_id)
 );
 
@@ -80,6 +89,8 @@ insert into r_role_resource (role_id,res_id) values (1,3);
 select * from t_role where role_id in (select role_id from r_user_role where user_id = 1);
 select * from t_resource where res_id in (select res_id from r_role_resource where role_id = 1);
 
+
+
 drop table b_survey;
 create table b_survey
 (
@@ -95,6 +106,7 @@ drop table b_question;
 create table b_question
 (
 qs_id int not null auto_increment,
+sv_id int not null,
 ord int,
 text varchar(512),
 primary key (qs_id)
