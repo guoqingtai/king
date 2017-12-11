@@ -9,5 +9,6 @@
   <modules>
     <module>knight</module>
     <module>herald</module>
+    <module>background</module>
   </modules>
 </project>

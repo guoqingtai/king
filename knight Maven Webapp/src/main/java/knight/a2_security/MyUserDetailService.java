@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import knight.a1_common_utils.Md5Util;
 import knight.b0_mnt.entity.TRole;
 import knight.b0_mnt.entity.TUser;
 import knight.b0_mnt.service.LoginService;

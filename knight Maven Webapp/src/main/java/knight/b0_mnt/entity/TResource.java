@@ -5,7 +5,7 @@ public class TResource {
 	private int resId;
 	private String uri;
 	
-	/**菜单中的第几项,若果是0，则不展示*/
+	/**菜单中的第几项,若果是0，则不展示*/ 
 	private int num;
 	
 	/**父菜单*/
