@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index.html</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	var str = '{ "name": "John" }';
+	var obj = jQuery.parseJSON(str)
+	//alert("1" + obj.name);
+</script>
+<script type="text/javascript">
+	var url = "test2.htm";
+	$.ajax({
+		type : "post",
+		url : url,
+		data : {
+			"para" : 1
+		},
+		cache : false,
+		async : false,
+		dataType : "json",
+		success : function(data, textStatus, jqXHR) {
+			alert(data);
+			if ("true" == data.flag) {
+				alert("hefea");
+				return true;
+			} else {
+				alert("buhefa" + data.errorMsg);
+				return false;
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("qingqiushibai");
+			alert(XMLHttpRequest);
+		}
+	});
+</script>
+
+</head>
+<body>
+	This is my HTML page INDEX.
+	<br>
+	<form id="login" action="test1.htm" method="post">
+		text<input type="text" name="test"></input> <input type="submit"
+			value="submit" />
+	</form>
+</body>
+</html>
