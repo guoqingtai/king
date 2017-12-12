@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSONObject;
+
+import background.bean.JsonBean;
+
 @Controller()
 @RequestMapping("/")
 public class TestController {
@@ -25,7 +29,13 @@ public class TestController {
 		PrintWriter writer;
 		try {
 			writer = response.getWriter();
-			writer.println("12345");
+			JSONObject js = new JSONObject();
+			js.put("aaa","bb");
+			JsonBean jsb = new JsonBean();
+			jsb.setFoo("foo1");
+			js.put("jsb",jsb);
+			writer.println(js.toJSONString());
+			
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
